@@ -7,11 +7,12 @@
 # 1pf. The abreviated orders of magnitude make it easier to think about
 # an enormous range of values but it is not easy to sort a spreadsheet 
 # by part values.
-#
+# 
 # This script takes a csv file exported from the Electronics CAD program
 # Diptrace, finds the values field and sorts the component values from 
-# least to greatest to make organizing and assembling 
-#
+# least to greatest to make organizing parts and assembling circuit boards
+# based on the BOM easier.
+# 
 # To do:
 #    - Accept file name as command line argument
 #    - Use original file name as basis for output file name
