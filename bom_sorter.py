@@ -4,10 +4,13 @@
 # 1 - 4 - 18
 #
 # An electronics bill of materials contains values like 10k, 1uF and
-# 1pf which are tricky to sort.
+# 1pf. The abreviated orders of magnitude make it easier to think about
+# an enormous range of values but it is not easy to sort a spreadsheet 
+# by part values.
 #
-# This script takes a csv file exported from Diptrace, finds the
-# values field and sorts the component values from least to greatest.
+# This script takes a csv file exported from the Electronics CAD program
+# Diptrace, finds the values field and sorts the component values from 
+# least to greatest to make organizing and assembling 
 #
 # To do:
 #    - Accept file name as command line argument
@@ -142,7 +145,7 @@ def valueParser(component, value):
 #
 #----------------------------------------
 
-dataFile = open('Rev3 BOM 010418.csv','rb')
+dataFile = open('Example BOM To Be Sorted.csv','rb')
 
 totalLines = []
 
@@ -205,15 +208,17 @@ valueColumn = header.index('Value')
 totalLineCopy = []
 for line in totalLines:
 	if 'CAP' in line[nameColumn]:
-		print('Cap ---> ' + line[valueColumn])
-		print('Parsed Value ---> ' + str(valueParser('CAP',line[valueColumn])))
+		if debug:
+			print('Cap ---> ' + line[valueColumn])
+			print('Parsed Value ---> ' + str(valueParser('CAP',line[valueColumn])))
 		parsedValue = valueParser('CAP',line[valueColumn])
 		line.append(parsedValue[0])
 		line.append(parsedValue[1])
 
 	elif 'RES' in line[nameColumn]:
-		print('Res ---> ' + line[valueColumn])
-		print('Parsed Value ---> ' + str(valueParser('RES',line[valueColumn])))
+		if debug:
+			print('Res ---> ' + line[valueColumn])
+			print('Parsed Value ---> ' + str(valueParser('RES',line[valueColumn])))
 		parsedValue = valueParser('RES',line[valueColumn])
 		line.append(parsedValue[0])
 		line.append(parsedValue[1])
@@ -262,7 +267,7 @@ if debug:
 #
 #----------------------------------------
 
-outputFile = open("output.csv", 'w')
+outputFile = open("Sorted Output.csv", 'w')
 
 tempLine = ''
 for item in header:
