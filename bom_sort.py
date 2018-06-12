@@ -12,10 +12,9 @@
 # To do:
 #    - Accept file name as command line argument
 #    - Use original file name as basis for output file name
-#    - Remove or put print statements into
 #--------------------------------------------------------------------
 
-import datetime
+debug = False
 
 #-----------------------------------------------
 # Function: valueParser
@@ -24,7 +23,7 @@ import datetime
 #
 # returns: a list including "RES" or "CAP" and a numeric value as a string
 #
-# This function converts an engineering shoorthand like "10k" to a number like 10,000
+# This function converts an engineering shorthand like "10k" to a number like 10,000
 #-----------------------------------------------
 
 def valueParser(component, value):
@@ -166,11 +165,11 @@ for line in dataFile:
 			headercopy.append(item)
 		header = headercopy[:]
 
-		'''
-		print('-' * 50)
-		print(headercopy)
-		print('-' * 50)
-		'''
+		if debug:
+			print('-' * 50)
+			print(headercopy)
+			print('-' * 50)
+
 
 	# For the rest of the lines, add them to the list of
 	# total lines. This is our dataset.
@@ -185,10 +184,10 @@ for line in dataFile:
 		totalLines.append(line)
 	i += 1
 
-"""
-print(totalLines)
-print('-' * 60 + '\n' * 4)
-"""
+if debug:
+	print(totalLines)
+	print('-' * 60 + '\n' * 4)
+
 
 # Add header columns to sort components by
 header.append("componentSorter")
@@ -226,15 +225,15 @@ for line in totalLines:
 
 totalLines = totalLineCopy[:]
 
-"""
-print('\n' * 4)
-print('-' * 60)
-print(header)
-print('-' * 60)
-print()
-for line in totalLines:
-	print(line)
-"""
+if debug:
+	print('\n' * 4)
+	print('-' * 60)
+	print(header)
+	print('-' * 60)
+	print()
+	for line in totalLines:
+		print(line)
+
 
 #-------------------
 # Sort all lines based first on the component type then on the component value
@@ -246,19 +245,16 @@ valueSorterColumn = header.index('valueSorter')
 totalLines = sorted(totalLines, key=lambda x : (x[componentSorterColumn],x[valueSorterColumn]))
 
 
-"""
-print('\n' * 4)
-print('-' * 60)
-print('Sorted Lists:')
-print(header)
-print('-' * 60)
-print()
-for line in totalLines:
-	print(line)
-"""
+if debug:
+	print('\n' * 4)
+	print('-' * 60)
+	print('Sorted Lists:')
+	print(header)
+	print('-' * 60)
+	print()
+	for line in totalLines:
+		print(line)
 
-# from time import gmtime, strftime
-# currentTime = strftime("%a, %d %b %Y %X +0000", gmtime())
 
 #----------------------------------------
 #
