@@ -1,7 +1,7 @@
 # BOM_sorter
 
 An electronics bill of materials contains values like 10k, 1uF and
-1pf. The abreviated orders of magnitude make it easier to think about
+1pf. The abbreviated orders of magnitude make it easier to think about
 an enormous range of values but it is not easy to sort a spreadsheet 
 by part values.
 
